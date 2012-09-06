@@ -1,6 +1,9 @@
 package za.co.kierendavies.pleasecall;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,7 +22,6 @@ public class PleaseCall extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        title = (TextView) findViewById(R.id.title);
         editText = (EditText) findViewById(R.id.number);
 
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -40,6 +42,16 @@ public class PleaseCall extends Activity {
     }
 
     public void send(View view) {
-        title.setText(editText.getText());
+        try {
+            startActivity(new Intent("android.intent.action.CALL",
+                    Uri.parse("tel:*121*" + scrubbed(editText.getText().toString()) + Uri.encode("#"))));
+        } catch (ActivityNotFoundException activityException) {
+        }
+    }
+
+    public static String scrubbed(String number) {
+        number = number.replaceAll("^\\+27", "0");  // replace country code
+        number = number.replaceAll("[^0-9]", "");  // remove non-digits
+        return number;
     }
 }
