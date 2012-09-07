@@ -112,12 +112,16 @@ public class PleaseCall extends Activity {
         }
     }
 
-    public void send(View view) {
+    public void send(String number) {
         try {
-            startActivity(new Intent("android.intent.action.CALL",
-                    Uri.parse("tel:*121*" + scrubbed(editText.getText().toString()) + Uri.encode("#"))));
+            startActivity(new Intent(Intent.ACTION_CALL,
+                    Uri.parse("tel:*121*" + scrubbed(number) + Uri.encode("#"))));
         } catch (ActivityNotFoundException activityException) {
         }
+    }
+
+    public void send(View view) {
+        send(editText.getText().toString());
     }
 
     public static String scrubbed(String number) {
