@@ -38,7 +38,7 @@ public class PleaseCall extends Activity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
-                    send(null);
+                    send();
                     handled = true;
                 }
                 return handled;
@@ -112,6 +112,10 @@ public class PleaseCall extends Activity {
         }
     }
 
+    protected void onNewIntent(Intent intent) {
+        editText.setText(intent.getData().getSchemeSpecificPart());
+    }
+
     public void send(String number) {
         try {
             startActivity(new Intent(Intent.ACTION_CALL,
@@ -120,8 +124,12 @@ public class PleaseCall extends Activity {
         }
     }
 
-    public void send(View view) {
+    public void send() {
         send(editText.getText().toString());
+    }
+
+    public void send(View view) {
+        send();
     }
 
     public static String scrubbed(String number) {
