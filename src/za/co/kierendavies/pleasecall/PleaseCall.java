@@ -44,6 +44,11 @@ public class PleaseCall extends Activity {
                 return handled;
             }
         });
+
+        Intent intent = getIntent();
+        if (intent.getAction().equals("android.intent.action.CALL_PRIVILEGED")) {
+            editText.setText(intent.getData().getSchemeSpecificPart());
+        }
     }
 
     public void selectContact(View view) {
@@ -110,10 +115,6 @@ public class PleaseCall extends Activity {
         } else {
             //not ok actions
         }
-    }
-
-    protected void onNewIntent(Intent intent) {
-        editText.setText(intent.getData().getSchemeSpecificPart());
     }
 
     public void send(String number) {
