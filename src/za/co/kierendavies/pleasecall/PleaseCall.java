@@ -60,57 +60,55 @@ public class PleaseCall extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // based on http://stackoverflow.com/a/6155690
         if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case CONTACT_PICKER_RESULT:
-                    Cursor cursor = null;
-                    String phoneNumber = "";
-                    List<String> allNumbers = new ArrayList<String>();
-                    int phoneIdx = 0;
-                    try {
-                        Uri result = data.getData();
-                        String id = result.getLastPathSegment();
-                        cursor = getContentResolver().query(Phone.CONTENT_URI, null, Phone.CONTACT_ID + "=?", new String[] { id }, null);
-                        phoneIdx = cursor.getColumnIndex(Phone.DATA);
-                        if (cursor.moveToFirst()) {
-                            while (cursor.isAfterLast() == false) {
-                                phoneNumber = cursor.getString(phoneIdx);
-                                allNumbers.add(phoneNumber);
-                                cursor.moveToNext();
-                            }
-                        } else {
-                            //no results actions
+            if (requestCode == CONTACT_PICKER_RESULT) {
+                Cursor cursor = null;
+                String phoneNumber = "";
+                List<String> allNumbers = new ArrayList<String>();
+                int phoneIdx = 0;
+                try {
+                    Uri result = data.getData();
+                    String id = result.getLastPathSegment();
+                    cursor = getContentResolver().query(Phone.CONTENT_URI, null, Phone.CONTACT_ID + "=?", new String[] { id }, null);
+                    phoneIdx = cursor.getColumnIndex(Phone.DATA);
+                    if (cursor.moveToFirst()) {
+                        while (cursor.isAfterLast() == false) {
+                            phoneNumber = cursor.getString(phoneIdx);
+                            allNumbers.add(phoneNumber);
+                            cursor.moveToNext();
                         }
-                    } catch (Exception e) {
-                        //error actions
-                    } finally {
-                        if (cursor != null) {
-                            cursor.close();
-                        }
+                    } else {
+                        //no results actions
+                    }
+                } catch (Exception e) {
+                    //error actions
+                } finally {
+                    if (cursor != null) {
+                        cursor.close();
+                    }
 
-                        final CharSequence[] items = allNumbers.toArray(new String[allNumbers.size()]);
-                        AlertDialog.Builder builder = new AlertDialog.Builder(PleaseCall.this);
-                        builder.setTitle("Choose a number");
-                        builder.setItems(items, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int item) {
-                                String selectedNumber = items[item].toString();
-                                selectedNumber = selectedNumber.replace("-", "");
-                                editText.setText(selectedNumber);
-                            }
-                        });
-                        AlertDialog alert = builder.create();
-                        if(allNumbers.size() > 1) {
-                            alert.show();
-                        } else {
-                            String selectedNumber = phoneNumber.toString();
+                    final CharSequence[] items = allNumbers.toArray(new String[allNumbers.size()]);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PleaseCall.this);
+                    builder.setTitle("Choose a number");
+                    builder.setItems(items, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int item) {
+                            String selectedNumber = items[item].toString();
                             selectedNumber = selectedNumber.replace("-", "");
                             editText.setText(selectedNumber);
                         }
-
-                        if (phoneNumber.length() == 0) {
-                            //no numbers found actions
-                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    if(allNumbers.size() > 1) {
+                        alert.show();
+                    } else {
+                        String selectedNumber = phoneNumber.toString();
+                        selectedNumber = selectedNumber.replace("-", "");
+                        editText.setText(selectedNumber);
                     }
-                    break;
+
+                    if (phoneNumber.length() == 0) {
+                        //no numbers found actions
+                    }
+                }
             }
         } else {
             //not ok actions
