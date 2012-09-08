@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="provider_names">
+        <item>8ta</item>
+        <item>Cell C</item>
+        <item>MTN</item>
+        <item>Vodacom</item>
+    </array>
+    <array name="provider_prefixes">
+        <item>140</item>
+        <item>111</item>
+        <item>121</item>
+        <item>140</item>
+    </array>
+</resources>

@@ -3,4 +3,5 @@
     <string name="app_name">Please Call</string>
     <string name="button_select_contact">Select contact</string>
     <string name="button_send">Send call request</string>
+    <string name="options_select_provider">Select provider</string>
 </resources>

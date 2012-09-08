@@ -5,12 +5,17 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -21,8 +26,8 @@ import java.util.List;
 
 public class PleaseCall extends Activity {
     private static final int CONTACT_PICKER_RESULT = 1001;
-
-    EditText editText;
+    private static String providerPrefix;
+    private EditText editText;
     /**
      * Called when the activity is first created.
      */
@@ -49,6 +54,26 @@ public class PleaseCall extends Activity {
         if (intent.getAction().equals("android.intent.action.CALL_PRIVILEGED")) {
             editText.setText(intent.getData().getSchemeSpecificPart());
         }
+
+        SharedPreferences settings = getPreferences(MODE_PRIVATE);
+        providerPrefix = settings.getString("providerPrefix", null);
+        if (providerPrefix == null) {
+            // prompt to choose one
+            // whatever, let's default to MTN
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString("providerPrefix", "121");
+            editor.commit();
+        }
+
+        Resources res = getResources();
+        TypedArray providerNames = res.obtainTypedArray(R.array.provider_names);
+        TypedArray providerPrefixes = res.obtainTypedArray(R.array.provider_prefixes);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options, menu);
+        return true;
     }
 
     public void selectContact(View view) {
