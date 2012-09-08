@@ -3,6 +3,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/menu_browser"
           android:title="@string/options_select_provider"
-          android:showAsAction="ifRoom"
+          android:showAsAction="never"
+          android:onClick="selectProvider"
             />
 </menu>
