@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Please Call</string>
+    <string name="sending">Sending Please Call...</string>
     <string name="app_settings_name">Please Call Settings</string>
     <string name="provider_title">Select provider</string>
     <string name="provider_dialog_title">Select provider</string>
-    <string name="sending">Sending Please Call...</string>
+    <string name="about_title">About</string>
 </resources>
