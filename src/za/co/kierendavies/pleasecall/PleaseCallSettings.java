@@ -8,9 +8,6 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.util.Log;
-
-import java.util.List;
 
 public class PleaseCallSettings extends PreferenceActivity{
 

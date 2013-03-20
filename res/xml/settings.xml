@@ -6,7 +6,7 @@
         android:dialogTitle="@string/provider_dialog_title"
         android:entries="@array/provider_names"
         android:entryValues="@array/provider_prefixes"
-        android:defaultValue="121" />
+        android:defaultValue="" />
     <PreferenceScreen
         android:title="@string/about_title"
         android:key="about"
