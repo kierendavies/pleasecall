@@ -10,6 +10,7 @@ import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.Log;
@@ -30,8 +31,8 @@ public class PleaseCall extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences settings = getPreferences(MODE_PRIVATE);
-        providerPrefix = settings.getString("providerPrefix", null);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        providerPrefix = sharedPref.getString("providerPrefix", null);
         Log.v(LOG_TAG, "prefix is " + providerPrefix);
         if (providerPrefix == null) {
             startActivity(new Intent(this, PleaseCallSettings.class));
