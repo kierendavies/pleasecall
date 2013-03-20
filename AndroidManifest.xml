@@ -6,15 +6,19 @@
     <uses-sdk android:minSdkVersion="15"/>
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
         <activity android:name="PleaseCall"
-                  android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+                  android:label="@string/app_name"
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.CALL_PRIVILEGED" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:scheme="tel" />
+            </intent-filter>
+        </activity>
+        <activity android:name="PleaseCallSettings"
+                  android:label="@string/app_settings_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>

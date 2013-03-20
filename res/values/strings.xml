@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Please Call</string>
-    <string name="button_select_contact">Select contact</string>
-    <string name="button_send">Send call request</string>
-    <string name="options_select_provider">Select provider</string>
+    <string name="app_settings_name">Please Call Settings</string>
+    <string name="provider_title">Select provider</string>
+    <string name="provider_dialog_title">Select provider</string>
+    <string name="sending">Sending Please Call...</string>
 </resources>

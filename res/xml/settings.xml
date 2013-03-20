@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+            android:key="provider"
+            android:title="@string/provider"
+            android:dialogTitle="@string/select_provider"
+            android:entries="@array/provider_names"
+            android:entryValues="@array/provider_prefixes"
+            android:defaultValue="@string/default_provider" />
+</PreferenceScreen>
