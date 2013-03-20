@@ -11,11 +11,11 @@
         android:title="@string/about_title"
         android:key="about"
         android:persistent="false">
-        <Preference android:title="Developer homepage" >
+        <Preference android:title="@string/dev_home" >
             <intent android:action="android.intent.action.VIEW"
                 android:data="http://www.kierendavies.co.za" />
         </Preference>
-        <Preference android:title="Feedback" >
+        <Preference android:title="@string/feedback" >
             <intent android:action="android.intent.action.VIEW"
                 android:data="mailto:dev@kierendavies.co.za?subject=Please Call feedback" />
         </Preference>

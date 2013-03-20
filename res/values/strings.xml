@@ -6,4 +6,6 @@
     <string name="provider_title">Select provider</string>
     <string name="provider_dialog_title">Select provider</string>
     <string name="about_title">About</string>
+    <string name="dev_home">Developer homepage</string>
+    <string name="feedback">Feedback</string>
 </resources>
