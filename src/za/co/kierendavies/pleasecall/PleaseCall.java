@@ -25,8 +25,8 @@ public class PleaseCall extends Activity {
             String[] prefixes = getResources().getStringArray(R.array.provider_prefixes);
             String mnc = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE)).getSimOperator().substring(3);
             // TODO check mcc is 655 (South Africa)
-            int i;
-            for (i = 0; i < mncs.length && !mnc.equals(mncs[i]); ++i);
+            int i = 0;
+            while (i < mncs.length && !mnc.equals(mncs[i])) ++i;
             if (i < mncs.length) {
                 providerPrefix = prefixes[i];
                 sharedPref.edit()
